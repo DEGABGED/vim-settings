@@ -28,13 +28,14 @@ set wildmode=list:longest,full
 
 " CtrlP.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode='ca'
 
-" Syntax highlighting / Solarized
+" Syntax highlighting / Colors
 syntax enable
 "let g:solarized_termcolors=256
-set t_Co=16
+set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme hybrid
 
 " Tabulation / Folding
 set noexpandtab
