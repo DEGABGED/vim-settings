@@ -1,0 +1,22 @@
+# I hate Java
+snippet sout "System.out.println"
+System.out.println($1);
+endsnippet
+
+snippet psvm "Public static void main"
+public static void main(String[] args) {
+	$1
+}
+endsnippet
+
+snippet accsr "Accessor"
+public $1 get${VISUAL/\w+\s*/\u$0/g}() {
+	return this.${VISUAL};
+}
+endsnippet
+
+snippet muttr "Mutator"
+public void set${VISUAL/\w+\s*/\u$0/g}($1 ${VISUAL}) {
+	this.${VISUAL} = ${VISUAL};
+}
+endsnippet
