@@ -1,6 +1,6 @@
 " SYMLINKED
 " For Pathogen (unused)
-" execute pathogen#infect()
+
 " set modeline
 
 " For Vundle
@@ -56,10 +56,9 @@ set tabstop=4
 " set foldenable
 " syn region foldBraces start=/{/ end=/}/ transparent fold
 " syn region foldJavadoc start=,/\*\*, end=,\*/, transparent fold keepend
-" set foldlevel=0
 set fdm=syntax
-set foldenable
-set fdc=1
+set fdc=2
+set foldlevelstart=2
 " augroup javadocs
 " 	au BufReadPre *.java :set fdm=marker fmr=/**,**
 " 	au BufWinEnter *.java :set fdm=manual
@@ -67,7 +66,7 @@ set fdc=1
 
 " Mappings
 vmap <c-c> gc
-nnoremap __ gt
+nnoremap <Tab> <c-w>w
 
 nnoremap <F2> :NERDTree<CR>
 vnoremap <F2> <Esc>:NERDTree<CR>
@@ -82,8 +81,16 @@ inoremap <F5> <Esc>:source %<CR>
 
 nnoremap <c-j> :bp<CR>
 nnoremap <c-k> :bn<CR>
-nnoremap <c-h> <c-w>W
-nnoremap <c-l> <c-w>w
+nnoremap <c-h> gT
+nnoremap <c-l> gt
+" Might switch these for something more useful
+nnoremap <c-DOWN> zj
+nnoremap <c-UP> zk
+nnoremap <c-LEFT> <c-w><
+nnoremap <c-RIGHT> <c-w>>
+
+" I don't want to accidentally close vim with CTRL-Z
+nnoremap <c-z> <Esc>
 
 " UltiSnips (may be removed if I use YCM)
 let g:UltiSnipsExpandTrigger="<tab>"

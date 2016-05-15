@@ -10,13 +10,9 @@ public static void main(String[] args) {
 endsnippet
 
 snippet accsr "Accessor"
-public $1 get${VISUAL/\w+\s*/\u$0/g}() {
-	return this.${VISUAL};
-}
+public $1 get${VISUAL/\w+\s*/\u$0/g}() { return this.${VISUAL}; }
 endsnippet
 
 snippet muttr "Mutator"
-public void set${VISUAL/\w+\s*/\u$0/g}($1 ${VISUAL}) {
-	this.${VISUAL} = ${VISUAL};
-}
+public void set${VISUAL/\w+\s*/\u$0/g}($1 ${VISUAL}) { this.${VISUAL} = ${VISUAL}; }
 endsnippet
