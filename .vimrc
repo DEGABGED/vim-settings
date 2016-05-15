@@ -1,8 +1,3 @@
-" SYMLINKED
-" For Pathogen (unused)
-
-" set modeline
-
 " For Vundle
 set nocompatible
 filetype off
@@ -58,7 +53,7 @@ set tabstop=4
 " syn region foldJavadoc start=,/\*\*, end=,\*/, transparent fold keepend
 set fdm=syntax
 set fdc=2
-set foldlevelstart=2
+set foldlevelstart=1
 " augroup javadocs
 " 	au BufReadPre *.java :set fdm=marker fmr=/**,**
 " 	au BufWinEnter *.java :set fdm=manual
@@ -73,7 +68,7 @@ vnoremap <F2> <Esc>:NERDTree<CR>
 onoremap <F2> <Esc>:NERDTree<CR>
 inoremap <F2> <Esc>:NERDTree<CR>
 nnoremap <F4> :noh<CR>
-" Might be better to just restart vim in certain cases though tbh
+
 nnoremap <F5> :source %<CR>
 vnoremap <F5> <Esc>:source %<CR>
 onoremap <F5> <Esc>:source %<CR>
@@ -83,14 +78,19 @@ nnoremap <c-j> :bp<CR>
 nnoremap <c-k> :bn<CR>
 nnoremap <c-h> gT
 nnoremap <c-l> gt
-" Might switch these for something more useful
+
 nnoremap <c-DOWN> zj
 nnoremap <c-UP> zk
-nnoremap <c-LEFT> <c-w><
-nnoremap <c-RIGHT> <c-w>>
+nnoremap <Space> za
+nnoremap <c-LEFT> zm
+nnoremap <c-RIGHT> zr
 
-" I don't want to accidentally close vim with CTRL-Z
-nnoremap <c-z> <Esc>
+nnoremap b B
+nnoremap e E
+nnoremap B ^
+nnoremap E $
+
+nnoremap <c-z> <nop>
 
 " UltiSnips (may be removed if I use YCM)
 let g:UltiSnipsExpandTrigger="<tab>"
