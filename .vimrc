@@ -38,11 +38,11 @@ colorscheme hybrid
 hi! Folded ctermfg=black ctermbg=darkgrey
 hi! FoldColumn ctermfg=black ctermbg=darkgrey
 
-" Tabulation
+" Tabulation (will be overriden for most files)
 set noexpandtab
 set copyindent
 set preserveindent
-set shiftwidth=4
+set shiftwidth=0
 set tabstop=4
 
 " Folding
@@ -69,6 +69,8 @@ noremap <F4> :noh<CR>
 noremap! <F4> <Esc>:noh<CR>
 noremap <F5> :source %<CR>
 noremap! <F5> <Esc>:source %<CR>
+noremap <F3> :call ToggleNumbering()<CR>
+noremap! <F3> <Esc>:call ToggleNumbering()<CR>
 
 nnoremap <c-j> :bp<CR>
 nnoremap <c-k> :bn<CR>
@@ -81,6 +83,15 @@ nnoremap <c-LEFT> zm
 nnoremap <c-RIGHT> zr
 nnoremap <Leader><DOWN> 10<c-w>-
 nnoremap <Leader><UP> 10<c-w>+
+
+nnoremap <DOWN> <nop>
+nnoremap <UP> <nop>
+nnoremap <LEFT> <nop>
+nnoremap <RIGHT> <nop>
+inoremap <DOWN> <nop>
+inoremap <UP> <nop>
+inoremap <LEFT> <nop>
+inoremap <RIGHT> <nop>
 
 nnoremap B ^
 nnoremap E $
@@ -100,12 +111,23 @@ augroup END
 function! TabSetting(stop, expand)
 	let &tabstop = a:stop
 	let &softtabstop = a:stop
+	let &shiftwidth = a:stop
 	if a:expand
 		set expandtab
 	else
 		set noexpandtab
 	endif
 	retab
+endfunction
+
+" Yanked from dougblack.io
+function! ToggleNumbering()
+	if &relativenumber
+		set norelativenumber
+		set number
+	else
+		set relativenumber
+	endif
 endfunction
 
 " UltiSnips (may be removed if I use YCM)
@@ -117,6 +139,7 @@ let g:UltiSnipsSnippetDirectories=["user-conf/snippets/"]
 
 " Numbering and invisibles
 set number
+set relativenumber
 set hls is
 set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
 set list!
@@ -124,9 +147,16 @@ set list!
 " NERDTree and NERDTree Git Plugin
 let g:NERDTreeSortOrder = [
 	\ '\/$',
+	\ '\.c$',
 	\ '\.java$',
+	\ '\.py$',
+	\ '\.rb$',
+	\ '\.php$',
+	\ '\.hs$',
+	\ '\.html$',
+	\ '\.js$',
+	\ '\.css$',
 	\ '\.sh$',
-	\ '\.sltr$',
 	\ '*'
 	\ ]
 
