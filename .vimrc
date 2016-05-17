@@ -42,7 +42,6 @@ hi! FoldColumn ctermfg=black ctermbg=darkgrey
 set noexpandtab
 set copyindent
 set preserveindent
-"set softtabstop=0
 set shiftwidth=4
 set tabstop=4
 
@@ -60,19 +59,16 @@ set foldlevelstart=1
 " augroup END
 
 " Mappings
+let mapleader=" "
 vmap <c-c> gc
 nnoremap <Tab> <c-w>w
 
-nnoremap <F2> :NERDTree<CR>
-vnoremap <F2> <Esc>:NERDTree<CR>
-onoremap <F2> <Esc>:NERDTree<CR>
-inoremap <F2> <Esc>:NERDTree<CR>
-nnoremap <F4> :noh<CR>
-
-nnoremap <F5> :source %<CR>
-vnoremap <F5> <Esc>:source %<CR>
-onoremap <F5> <Esc>:source %<CR>
-inoremap <F5> <Esc>:source %<CR>
+noremap <F2> :NERDTree<CR>
+noremap! <F2> <Esc>:NERDTree<CR>
+noremap <F4> :noh<CR>
+noremap! <F4> <Esc>:noh<CR>
+noremap <F5> :source %<CR>
+noremap! <F5> <Esc>:source %<CR>
 
 nnoremap <c-j> :bp<CR>
 nnoremap <c-k> :bn<CR>
@@ -81,16 +77,36 @@ nnoremap <c-l> gt
 
 nnoremap <c-DOWN> zj
 nnoremap <c-UP> zk
-nnoremap <Space> za
 nnoremap <c-LEFT> zm
 nnoremap <c-RIGHT> zr
+nnoremap <Leader><DOWN> 10<c-w>-
+nnoremap <Leader><UP> 10<c-w>+
 
-nnoremap b B
-nnoremap e E
 nnoremap B ^
 nnoremap E $
-
+nnoremap ^ <nop>
+nnoremap $ <nop>
 nnoremap <c-z> <nop>
+
+" Autocommands
+augroup fileTabbing
+	autocmd!
+	autocmd FileType python call TabSetting(2, 1)
+	autocmd FileType html call TabSetting(2, 1)
+	autocmd FileType c call TabSetting(4, 0)
+augroup END
+
+" Functions
+function! TabSetting(stop, expand)
+	let &tabstop = a:stop
+	let &softtabstop = a:stop
+	if a:expand
+		set expandtab
+	else
+		set noexpandtab
+	endif
+	retab
+endfunction
 
 " UltiSnips (may be removed if I use YCM)
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -105,7 +121,15 @@ set hls is
 set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
 set list!
 
-" NERDTree Git Plugin
+" NERDTree and NERDTree Git Plugin
+let g:NERDTreeSortOrder = [
+	\ '\/$',
+	\ '\.java$',
+	\ '\.sh$',
+	\ '\.sltr$',
+	\ '*'
+	\ ]
+
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "*",
     \ "Staged"    : "+",
