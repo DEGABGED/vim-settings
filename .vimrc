@@ -1,3 +1,5 @@
+" My VIMRC and shit
+
 " Vundle settings and plugins {{{
 set nocompatible
 filetype off
@@ -13,6 +15,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'bling/vim-bufferline'
@@ -34,8 +37,8 @@ syntax enable
 set t_Co=256
 set background=dark
 colorscheme hybrid
-hi! Folded ctermfg=black ctermbg=darkgrey
-hi! FoldColumn ctermfg=black ctermbg=darkgrey
+"hi! Folded ctermfg=black ctermbg=darkgrey
+"hi! FoldColumn ctermfg=black ctermbg=darkgrey
 " }}}
 
 " Tabulation {{{
@@ -75,8 +78,6 @@ nnoremap <c-DOWN> zj
 nnoremap <c-UP> zk
 nnoremap <c-LEFT> zm
 nnoremap <c-RIGHT> zr
-nnoremap <Leader><DOWN> 10<c-w>-
-nnoremap <Leader><UP> 10<c-w>+
 
 nnoremap <DOWN> <nop>
 nnoremap <UP> <nop>
@@ -92,6 +93,15 @@ nnoremap E $
 nnoremap ^ <nop>
 nnoremap $ <nop>
 nnoremap <c-z> <nop>
+
+nnoremap <Leader><DOWN> 10<c-w>-
+nnoremap <Leader><UP> 10<c-w>+
+nnoremap <Leader><LEFT> 10<c-w><
+nnoremap <Leader><RIGHT> 10<c-w>>
+
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Wq wq
 " }}}
 
 " Autocommands {{{
