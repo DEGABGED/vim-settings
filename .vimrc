@@ -111,8 +111,15 @@ augroup fileTabbing
 	autocmd FileType ruby call TabSetting(2, 1)
 	autocmd FileType javascript call TabSetting(2, 1)
 	autocmd FileType html call TabSetting(2, 1)
+	autocmd FileType eruby call TabSetting(2, 1)
 	autocmd FileType c call TabSetting(4, 0)
 	autocmd FileType java call TabSetting(4, 0)
+augroup END
+
+augroup indentFolding
+	autocmd!
+	autocmd FileType html setlocal fdm=indent
+	autocmd FileType eruby setlocal fdm=indent
 augroup END
 " }}}
 
