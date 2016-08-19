@@ -13,12 +13,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tpope/vim-commentary'
+"Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'bling/vim-bufferline'
+"Plugin 'bling/vim-bufferline'
+Plugin 'vim-airline/vim-airline'
 
 " After adding the plugins
 call vundle#end()
@@ -32,7 +33,7 @@ set wildmode=list:longest,full
 " }}}
 
 " Syntax highlighting, colors {{{
-syntax enable
+"syntax enable
 "let g:solarized_termcolors=256
 set t_Co=256
 set background=dark
@@ -61,13 +62,8 @@ vmap <c-c> gc
 nnoremap <Tab> <c-w>w
 
 noremap <F2> :NERDTree<CR>
-noremap! <F2> <Esc>:NERDTree<CR>
 noremap <F3> :call ToggleNumbering()<CR>
-noremap! <F3> <Esc>:call ToggleNumbering()<CR>
 noremap <F4> :noh<CR>
-noremap! <F4> <Esc>:noh<CR>
-noremap <F5> :source %<CR>
-noremap! <F5> <Esc>:source %<CR>
 
 nnoremap <c-j> :bp<CR>
 nnoremap <c-k> :bn<CR>
@@ -199,6 +195,10 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "C",
     \ "Unknown"   : "?"
     \ }
+" }}}
+
+" Vim-airline {{{
+let g:airline#extensions#tabline#enabled = 1
 " }}}
 " }}}
 
