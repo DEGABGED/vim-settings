@@ -14,12 +14,14 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
 "Plugin 'altercation/vim-colors-solarized'
-"Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary'
 "Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'morhetz/gruvbox'
 
 " After adding the plugins
 call vundle#end()
@@ -36,8 +38,9 @@ set wildmode=list:longest,full
 "syntax enable
 "let g:solarized_termcolors=256
 set t_Co=256
+let g:gruvbox_italic=1
+colorscheme gruvbox
 set background=dark
-colorscheme hybrid
 "hi! Folded ctermfg=black ctermbg=darkgrey
 "hi! FoldColumn ctermfg=black ctermbg=darkgrey
 " }}}
@@ -75,19 +78,12 @@ nnoremap <c-UP> zk
 nnoremap <c-LEFT> zm
 nnoremap <c-RIGHT> zr
 
-nnoremap <DOWN> <nop>
-nnoremap <UP> <nop>
-nnoremap <LEFT> <nop>
-nnoremap <RIGHT> <nop>
-inoremap <DOWN> <nop>
-inoremap <UP> <nop>
-inoremap <LEFT> <nop>
-inoremap <RIGHT> <nop>
-
 nnoremap B ^
 nnoremap E $
 nnoremap ^ <nop>
 nnoremap $ <nop>
+vnoremap <c-c> "+y
+inoremap <c-v> <Esc>"+pA
 nnoremap <c-z> <nop>
 
 nnoremap <Leader><DOWN> 10<c-w>-
@@ -101,21 +97,32 @@ cnoreabbrev Wq wq
 " }}}
 
 " Autocommands {{{
+augroup miscFileTypes
+  autocmd!
+augroup END
+
 augroup fileTabbing
 	autocmd!
-	autocmd FileType python call TabSetting(2, 1)
+	autocmd FileType python call TabSetting(4, 1)
 	autocmd FileType ruby call TabSetting(2, 1)
 	autocmd FileType javascript call TabSetting(2, 1)
 	autocmd FileType html call TabSetting(2, 1)
+	autocmd FileType php call TabSetting(2, 1)
 	autocmd FileType eruby call TabSetting(2, 1)
-	autocmd FileType c call TabSetting(4, 0)
+	autocmd FileType c call TabSetting(4, 1)
 	autocmd FileType java call TabSetting(4, 0)
+	autocmd FileType typescript call TabSetting(2, 1)
+	autocmd FileType css call TabSetting(2, 1)
+	autocmd FileType php call TabSetting(2, 1)
 augroup END
 
 augroup indentFolding
 	autocmd!
 	autocmd FileType html setlocal fdm=indent
+	autocmd FileType php setlocal fdm=indent
 	autocmd FileType eruby setlocal fdm=indent
+	autocmd FileType python setlocal fdm=indent
+  autocmd FileType js setlocal fdm=indent
 augroup END
 " }}}
 
