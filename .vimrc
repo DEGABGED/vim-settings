@@ -12,16 +12,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-commentary'
 "Plugin 'tpope/vim-surround'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jiangmiao/auto-pairs'
+"Plugin 'airblade/vim-gitgutter'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'morhetz/gruvbox'
+
+"Plugin 'leafgarland/typescript-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " After adding the plugins
 call vundle#end()
@@ -61,7 +65,7 @@ set foldlevelstart=1
 
 " Mappings {{{
 let mapleader=" "
-vmap <c-c> gc
+" vmap <c-c> gc
 nnoremap <Tab> <c-w>w
 
 noremap <F2> :NERDTree<CR>
@@ -97,32 +101,32 @@ cnoreabbrev Wq wq
 " }}}
 
 " Autocommands {{{
-augroup miscFileTypes
-  autocmd!
-augroup END
+" augroup miscFileTypes
+"   autocmd!
+" augroup END
 
 augroup fileTabbing
 	autocmd!
 	autocmd FileType python call TabSetting(4, 1)
-	autocmd FileType ruby call TabSetting(2, 1)
+" 	autocmd FileType ruby call TabSetting(2, 1)
 	autocmd FileType javascript call TabSetting(2, 1)
 	autocmd FileType html call TabSetting(2, 1)
-	autocmd FileType php call TabSetting(2, 1)
-	autocmd FileType eruby call TabSetting(2, 1)
-	autocmd FileType c call TabSetting(4, 1)
-	autocmd FileType java call TabSetting(4, 0)
+" 	autocmd FileType php call TabSetting(2, 1)
+" 	autocmd FileType eruby call TabSetting(2, 1)
+" 	autocmd FileType c call TabSetting(4, 1)
+" 	autocmd FileType java call TabSetting(4, 0)
 	autocmd FileType typescript call TabSetting(2, 1)
-	autocmd FileType css call TabSetting(2, 1)
-	autocmd FileType php call TabSetting(2, 1)
+" 	autocmd FileType css call TabSetting(2, 1)
+" 	autocmd FileType php call TabSetting(2, 1)
 augroup END
 
 augroup indentFolding
 	autocmd!
 	autocmd FileType html setlocal fdm=indent
-	autocmd FileType php setlocal fdm=indent
-	autocmd FileType eruby setlocal fdm=indent
-	autocmd FileType python setlocal fdm=indent
-  autocmd FileType js setlocal fdm=indent
+" 	autocmd FileType php setlocal fdm=indent
+" 	autocmd FileType eruby setlocal fdm=indent
+" 	autocmd FileType python setlocal fdm=indent
+"   autocmd FileType js setlocal fdm=indent
 augroup END
 " }}}
 
@@ -159,21 +163,24 @@ set list!
 set cursorline
 set cc=80
 set lazyredraw
+set ttyfast
 " }}}
 
 " Plugin-specific settings {{{
 " CtrlP.vim {{{
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_max_files=0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 "let g:ctrlp_working_path_mode='ca'
 " }}}
 
-" UltiSnips {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=["user-conf/snippets/"]
-" }}}
+" " UltiSnips {{{
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories=["user-conf/snippets/"]
+" " }}}
 
 " NERDTree and NERDTree Git Plugin {{{
 let g:NERDTreeSortOrder = [
@@ -191,17 +198,17 @@ let g:NERDTreeSortOrder = [
 	\ '*'
 	\ ]
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "*",
-    \ "Staged"    : "+",
-    \ "Untracked" : ".",
-    \ "Renamed"   : ">",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "X",
-    \ "Dirty"     : "D",
-    \ "Clean"     : "C",
-    \ "Unknown"   : "?"
-    \ }
+" let g:NERDTreeIndicatorMapCustom = {
+"     \ "Modified"  : "*",
+"     \ "Staged"    : "+",
+"     \ "Untracked" : ".",
+"     \ "Renamed"   : ">",
+"     \ "Unmerged"  : "═",
+"     \ "Deleted"   : "X",
+"     \ "Dirty"     : "D",
+"     \ "Clean"     : "C",
+"     \ "Unknown"   : "?"
+"     \ }
 " }}}
 
 " Vim-airline {{{
